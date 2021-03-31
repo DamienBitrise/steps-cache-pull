@@ -94,18 +94,18 @@ func readFirstEntry(r io.Reader) (*tar.Reader, *tar.Header, bool, error) {
 
 	log.Debugf("attempt to read archive as .gzip")
 
-	archive, err = gzip.NewReader(restoreReader)
-	if err != nil {
-		// might the archive is not compressed
-		log.Debugf("failed to open the archive as .gzip: %s", err)
-		log.Debugf("restoring reader and trying as .tar")
+// 	archive, err = gzip.NewReader(restoreReader)
+// 	if err != nil {
+// 		// might the archive is not compressed
+// 		log.Debugf("failed to open the archive as .gzip: %s", err)
+// 		log.Debugf("restoring reader and trying as .tar")
 
-		restoreReader.Restore()
-		archive = restoreReader
-		compressed = false
-	}
+// 		restoreReader.Restore()
+// 		archive = restoreReader
+// 		compressed = false
+// 	}
 
-	tr := tar.NewReader(archive)
+	tr := tar.NewReader(restoreReader)
 	hdr, err := tr.Next()
 	if err == io.EOF {
 		// no entries in the archive
