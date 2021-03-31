@@ -87,7 +87,7 @@ func processArgs(relative, compressed bool) string {
 func readFirstEntry(r io.Reader) (*tar.Reader, *tar.Header, bool, error) {
 	restoreReader := NewRestoreReader(r)
 
-	var archive io.Reader
+// 	var archive io.Reader
 	var err error
 	compressed := true
 
