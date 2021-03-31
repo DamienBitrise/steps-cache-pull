@@ -2,7 +2,6 @@ package main
 
 import (
 	"archive/tar"
-	"compress/gzip"
 	"fmt"
 	"io"
 
