@@ -85,13 +85,13 @@ func processArgs(relative, compressed bool) string {
 
 // readFirstEntry reads the first entry from a given archive.
 func readFirstEntry(r io.Reader) (*tar.Reader, *tar.Header, bool, error) {
-	restoreReader := NewRestoreReader(r)
+// 	restoreReader := NewRestoreReader(r)
 
 // 	var archive io.Reader
 	var err error
-	compressed := true
+	compressed := false
 
-	log.Debugf("attempt to read archive as .gzip")
+// 	log.Debugf("attempt to read archive as .gzip")
 
 // 	archive, err = gzip.NewReader(restoreReader)
 // 	if err != nil {
@@ -103,9 +103,7 @@ func readFirstEntry(r io.Reader) (*tar.Reader, *tar.Header, bool, error) {
 // 		archive = restoreReader
 // 		compressed = false
 // 	}
-	restoreReader.Restore()
-	compressed = false
-	tr := tar.NewReader(restoreReader)
+	tr := tar.NewReader(r)
 	hdr, err := tr.Next()
 	if err == io.EOF {
 		// no entries in the archive
