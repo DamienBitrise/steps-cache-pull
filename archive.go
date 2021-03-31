@@ -104,7 +104,7 @@ func readFirstEntry(r io.Reader) (*tar.Reader, *tar.Header, bool, error) {
 // 		archive = restoreReader
 // 		compressed = false
 // 	}
-
+	compressed = false
 	tr := tar.NewReader(restoreReader)
 	hdr, err := tr.Next()
 	if err == io.EOF {
